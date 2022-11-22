@@ -12,13 +12,8 @@ light();
 //Hardware();
 control();
 blinker();
+//testi testi
 ]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="11" Count="0" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="7" Count="3" />
-      <LineId Id="16" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
