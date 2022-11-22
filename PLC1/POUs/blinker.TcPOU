@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="blinker" Id="{7aa3e301-81fc-4e63-8fee-502ed38736e7}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM blinker
+VAR
+	cycles		: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[cycles := cycles + 1;
+// 1 s välein vaihtuva:
+IF cycles MOD 100 = 0 THEN
+	GVL.blinker1000ms := NOT(GVL.blinker1000ms);
+END_IF
+//laskurin nollaus:
+IF cycles >= 1000 THEN
+	cycles := 0;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="blinker">
+      <LineId Id="5" Count="0" />
+      <LineId Id="15" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

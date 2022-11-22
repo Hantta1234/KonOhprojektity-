@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL" Id="{4975a585-f788-453e-9391-6aa63f206255}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//Laitteistoon liitetyt globaalit muuttujat:
+	//Tulot:
+	safetyOk		: BOOL;
+	start 			: BOOL;
+	stop	 		: BOOL;
+	playCW			: BOOL;
+	playCCW			: BOOL;
+	//stepperSpeed	: INT := 0;
+	tila1			: BOOL;
+	tila2			: BOOL;
+	
+	//GUI
+	startGUI 		: BOOL;
+	stopGUI			: BOOL;
+	resetGUI		: BOOL;
+	asemannollausGUI : BOOL;
+	triggerGUI		: BOOL;
+
+	//Lähdöt:
+
+	systemOnLight	: BOOL;
+	safetyOkLight	: BOOL;
+	startBtnLight	: BOOL;
+	stopBtnLight	: BOOL;
+	resetBtnLight	: BOOL;
+	playCWBtnLight	: BOOL;
+	playCCWBtnLight	: BOOL;
+	
+	//Muut globaalit muuttujat:
+	
+	driverMode		: INT := 0;
+	vikamuisti		: BOOL := TRUE;
+	blinker1000ms	: BOOL;
+	muuVika			: BOOL;	
+	systemOn		: BOOL;
+	reset			: BOOL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

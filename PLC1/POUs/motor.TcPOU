@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="motor" Id="{28df45ae-e7e9-491f-8b3b-598937c01a46}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM motor
+VAR
+	stepperRef				: AXIS_REF;
+	stepperPower			: MC_Power;
+	stepperMoveAbsolute		: MC_MoveAbsolute;
+	
+	stepperValue			: INT := 0;
+	stepperSpeed			: INT := 0;
+	stepperSpeedGUI			: INT := 0;
+	currentStepperSpeed		: INT;
+	currentStepperPosition	: INT;
+	
+	kalibrointibtn			: BOOL;
+	lahestymiskytkin		: BOOL;
+	referenssissa			: BOOL;
+	Kotiasentonollaus		: MC_Home; //usermode 3 varten
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stepperPower(
+	Axis:= stepperRef, 
+	Enable:= TRUE, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= 100, 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Active=> , 
+	Error=> , 
+	ErrorID=> );
+	
+stepperMoveAbsolute(
+	Axis:= stepperRef, 
+	Execute:= , 
+	Position:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+IF stepperPower.Status THEN
+	IF GVL.systemOn THEN
+		CASE GVL.driverMode OF
+			1:	IF GVL.playCCW THEN
+					stepperValue := stepperValue + 1;
+				END_IF
+				IF GVL.playCW THEN
+					stepperValue := stepperValue - 1;
+				END_IF
+				stepperMoveAbsolute.Position	:= stepperValue;
+				stepperMoveAbsolute.Velocity 	:= stepperSpeed;
+				stepperMoveAbsolute.Execute		:= TRUE;
+			
+			2:	IF GVL.asemannollausGUI THEN
+					stepperValue := 0;
+				END_IF
+				IF GVL.triggerGUI THEN
+					stepperMoveAbsolute.Position	:= stepperValue;
+					stepperMoveAbsolute.Velocity 	:= stepperSpeedGUI;
+					stepperMoveAbsolute.Execute		:= TRUE;
+					currentStepperSpeed 			:= stepperSpeedGUI;
+					currentStepperPosition			:= stepperValue;
+				END_IF
+				
+			3:	IF referenssissa THEN
+					stepperMoveAbsolute.Position	:= stepperValue;
+					stepperMoveAbsolute.Velocity 	:= 10;
+					stepperMoveAbsolute.Execute		:= TRUE;
+				END_IF
+
+
+				IF NOT(lahestymiskytkin) THEN	
+					IF kalibrointibtn THEN
+						stepperSpeed := 10;
+						stepperValue := stepperValue + 1;
+					ELSE
+						stepperSpeed := 0;
+						stepperValue := 0;
+					END_IF					
+					stepperMoveAbsolute.Velocity 	:= stepperSpeed;
+					stepperMoveAbsolute.Position	:= stepperValue;
+					stepperMoveAbsolute.Execute		:= TRUE;
+					referenssissa := FALSE;
+				ELSE
+					stepperSpeed := 0;
+					stepperValue := 0;
+					referenssissa := TRUE;
+				END_IF
+				currentStepperSpeed 		:= stepperSpeed;
+				currentStepperPosition		:= stepperValue;
+		END_CASE	
+	END_IF
+
+	IF stepperMoveAbsolute.Done THEN
+		stepperMoveAbsolute.Execute := FALSE;
+	END_IF
+	
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="motor">
+      <LineId Id="12" Count="11" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="26" Count="14" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="127" Count="7" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="135" Count="5" />
+      <LineId Id="162" Count="1" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="180" Count="1" />
+      <LineId Id="145" Count="1" />
+      <LineId Id="248" Count="1" />
+      <LineId Id="246" Count="1" />
+      <LineId Id="244" Count="1" />
+      <LineId Id="243" Count="0" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="195" Count="2" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="198" Count="2" />
+      <LineId Id="204" Count="0" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="125" Count="1" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="61" Count="2" />
+      <LineId Id="223" Count="0" />
+      <LineId Id="49" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

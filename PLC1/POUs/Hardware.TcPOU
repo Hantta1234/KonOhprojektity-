@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Hardware" Id="{5f71b22e-f98d-4df7-b852-44da5dd2b04a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Hardware
+VAR
+	//Inputmodules:
+	EL1004_X1 	AT%I*	: DIOmodule; //Käytetään tyyppinä struktuuria, joka on määritelty globaaleissa muuttujissa. Ks GVL
+	EL1008_X2	AT%I*	: DIOmodule;
+	
+	//Outputmodules:
+	EL2004_X3	AT%Q*	: DIOmodule;
+	EL2008_X4	AT%Q*	: DIOmodule;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Tulokanavien kytkeminen muuttujiin:
+GVL.safetyOk 	:= EL1004_X1.input[0] ; //Tulokanava määrää muuttujan tilan
+GVL.start		:= EL1008_X2.input[3] ;
+GVL.stop		:= EL1008_X2.input[4] ;
+
+//Muuttujien kytkeminen lähtökanaviin:
+EL2004_X3.output[0] := GVL.stopBtnLight; //Muuttuja määrää lähtökanavan tilan
+EL2004_X3.output[1] := GVL.startBtnLight;
+]]></ST>
+    </Implementation>
+    <LineIds Name="Hardware">
+      <LineId Id="22" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="15" Count="3" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
