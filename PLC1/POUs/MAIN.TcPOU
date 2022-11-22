@@ -15,7 +15,8 @@ blinker();
 //testi testi
 
 //testi 2
-]]></ST>
+
+//testi 3]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
