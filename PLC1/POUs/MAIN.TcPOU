@@ -11,10 +11,7 @@ motor();
 light();
 //Hardware();
 control();
-blinker();
-
-//testi
-]]></ST>
+blinker();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
