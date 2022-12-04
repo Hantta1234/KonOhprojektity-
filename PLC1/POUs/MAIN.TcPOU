@@ -11,7 +11,8 @@ motor();
 light();
 //Hardware();
 control();
-blinker();]]></ST>
+blinker();
+//jsdkjfhksdk]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
