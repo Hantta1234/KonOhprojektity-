@@ -12,13 +12,7 @@ light();
 //Hardware();
 control();
 blinker();
-//testi testi
-
-//testi 2
-
-//testi 3
-
-//test 4]]></ST>
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

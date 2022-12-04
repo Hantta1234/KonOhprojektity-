@@ -6,6 +6,8 @@ VAR
 	stepperRef				: AXIS_REF;
 	stepperPower			: MC_Power;
 	stepperMoveAbsolute		: MC_MoveAbsolute;
+	JOG						: MC_jog;
+	Homing					: MC_Home; //usermode 3 varten
 	
 	stepperValue			: INT := 0;
 	stepperSpeed			: INT := 0;
@@ -16,7 +18,6 @@ VAR
 	kalibrointibtn			: BOOL;
 	lahestymiskytkin		: BOOL;
 	referenssissa			: BOOL;
-	Kotiasentonollaus		: MC_Home; //usermode 3 varten
 	
 	
 END_VAR
@@ -52,23 +53,58 @@ stepperMoveAbsolute(
 	CommandAborted=> , 
 	Error=> , 
 	ErrorID=> );
+	
+JOG(
+	Axis:= stepperRef, 
+	JogForward:= , 
+	JogBackwards:= , 
+	Mode:= , 
+	Position:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );	
 
-IF stepperPower.Status THEN
+Homing(
+	Axis:= stepperRef, 
+	Execute:= , 
+	Position:= , 
+	HomingMode:= , 
+	BufferMode:= , 
+	Options:= , 
+	bCalibrationCam:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+//IF stepperPower.Status THEN
 	IF GVL.systemOn THEN
 		CASE GVL.driverMode OF
 			1:	IF GVL.playCCW THEN
-					stepperValue := stepperValue + 1;
+					JOG.JogForward := TRUE;
 				END_IF
 				IF GVL.playCW THEN
-					stepperValue := stepperValue - 1;
+					JOG.JogBackwards := TRUE;
 				END_IF
-				stepperMoveAbsolute.Position	:= stepperValue;
-				stepperMoveAbsolute.Velocity 	:= stepperSpeed;
-				stepperMoveAbsolute.Execute		:= TRUE;
 			
-			2:	IF GVL.asemannollausGUI THEN
-					stepperValue := 0;
+			2:	homing.HomingMode	:= MC_Direct;
+			
+				IF GVL.asemannollausGUI THEN
+					homing.Execute := TRUE;
+					homing.Position := 0;
+				ELSE
+					homing.Execute := FALSE;
 				END_IF
+				
 				IF GVL.triggerGUI THEN
 					stepperMoveAbsolute.Position	:= stepperValue;
 					stepperMoveAbsolute.Velocity 	:= stepperSpeedGUI;
@@ -77,7 +113,11 @@ IF stepperPower.Status THEN
 					currentStepperPosition			:= stepperValue;
 				END_IF
 				
-			3:	IF referenssissa THEN
+			3:	//IF kalibrointibtn THEN
+					//Kotiasentonollaus.Execute;
+				//END_IF
+				
+				IF referenssissa THEN
 					stepperMoveAbsolute.Position	:= stepperValue;
 					stepperMoveAbsolute.Velocity 	:= 10;
 					stepperMoveAbsolute.Execute		:= TRUE;
@@ -110,48 +150,7 @@ IF stepperPower.Status THEN
 		stepperMoveAbsolute.Execute := FALSE;
 	END_IF
 	
-END_IF]]></ST>
+//END_IF]]></ST>
     </Implementation>
-    <LineIds Name="motor">
-      <LineId Id="12" Count="11" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="26" Count="14" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="45" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="124" Count="0" />
-      <LineId Id="127" Count="7" />
-      <LineId Id="156" Count="0" />
-      <LineId Id="135" Count="5" />
-      <LineId Id="162" Count="1" />
-      <LineId Id="141" Count="0" />
-      <LineId Id="166" Count="0" />
-      <LineId Id="180" Count="1" />
-      <LineId Id="145" Count="1" />
-      <LineId Id="248" Count="1" />
-      <LineId Id="246" Count="1" />
-      <LineId Id="244" Count="1" />
-      <LineId Id="243" Count="0" />
-      <LineId Id="192" Count="0" />
-      <LineId Id="185" Count="0" />
-      <LineId Id="191" Count="0" />
-      <LineId Id="195" Count="2" />
-      <LineId Id="186" Count="0" />
-      <LineId Id="184" Count="0" />
-      <LineId Id="183" Count="0" />
-      <LineId Id="147" Count="0" />
-      <LineId Id="205" Count="0" />
-      <LineId Id="198" Count="2" />
-      <LineId Id="204" Count="0" />
-      <LineId Id="151" Count="0" />
-      <LineId Id="164" Count="0" />
-      <LineId Id="203" Count="0" />
-      <LineId Id="125" Count="1" />
-      <LineId Id="155" Count="0" />
-      <LineId Id="61" Count="2" />
-      <LineId Id="223" Count="0" />
-      <LineId Id="49" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
