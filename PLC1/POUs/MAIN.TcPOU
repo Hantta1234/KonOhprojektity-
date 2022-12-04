@@ -12,6 +12,8 @@ light();
 //Hardware();
 control();
 blinker();
+
+//testi
 ]]></ST>
     </Implementation>
   </POU>
