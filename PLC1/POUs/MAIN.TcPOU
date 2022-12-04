@@ -12,6 +12,7 @@ light();
 //Hardware();
 control();
 blinker();
+//uustesti
 ]]></ST>
     </Implementation>
   </POU>
