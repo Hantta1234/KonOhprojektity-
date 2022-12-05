@@ -92,6 +92,7 @@ Homing(
 			1:	IF GVL.playCCW THEN
 					JOG.JogForward := TRUE;
 				END_IF
+				
 				IF GVL.playCW THEN
 					JOG.JogBackwards := TRUE;
 				END_IF

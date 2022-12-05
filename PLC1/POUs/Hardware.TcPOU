@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM Hardware
 VAR
 	//Inputmodules:
-	EL1004_X1 	AT%I*	: DIOmodule; //Käytetään tyyppinä struktuuria, joka on määritelty globaaleissa muuttujissa. Ks GVL
+	EL1004_X1 	AT%I*	: DIOmodule;
 	EL1008_X2	AT%I*	: DIOmodule;
 	
 	//Outputmodules:
@@ -14,21 +14,20 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Tulokanavien kytkeminen muuttujiin:
-GVL.safetyOk 	:= EL1004_X1.input[0] ; //Tulokanava määrää muuttujan tilan
-GVL.start		:= EL1008_X2.input[3] ;
-GVL.stop		:= EL1008_X2.input[4] ;
+//GVL.safetyOk 	:= EL1004_X1.input[0] ;
+GVL.tila1		:= EL1008_X2.input[0] ;
+GVL.tila2		:= EL1008_X2.input[1] ;
+GVL.reset		:= EL1008_X2.input[2] ;
+GVL.playCCW		:= EL1008_X2.input[3] ;
+GVL.playCW		:= EL1008_X2.input[4] ;
+GVL.stop		:= EL1008_X2.input[5] ;
+GVL.start		:= EL1008_X2.input[6] ;
 
-//Muuttujien kytkeminen lähtökanaviin:
-EL2004_X3.output[0] := GVL.stopBtnLight; //Muuttuja määrää lähtökanavan tilan
-EL2004_X3.output[1] := GVL.startBtnLight;
+//Nappien valot
+//GVL.start		:= EL2008_X4.output[0] ;
+//GVL.start		:= EL2008_X4.output[0] ;
+
 ]]></ST>
     </Implementation>
-    <LineIds Name="Hardware">
-      <LineId Id="22" Count="0" />
-      <LineId Id="25" Count="1" />
-      <LineId Id="15" Count="3" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

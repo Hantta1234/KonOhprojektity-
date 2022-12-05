@@ -6,14 +6,14 @@ VAR_GLOBAL
 	
 	//Laitteistoon liitetyt globaalit muuttujat:
 	//Tulot:
-	safetyOk		: BOOL;
-	start 			: BOOL;
-	stop	 		: BOOL;
-	playCW			: BOOL;
-	playCCW			: BOOL;
+	safetyOk			: BOOL := TRUE;
+	start 	AT%I*		: BOOL;
+	stop	AT%I*	 	: BOOL;
+	playCW	AT%I*		: BOOL;
+	playCCW	AT%I*		: BOOL;
 	//stepperSpeed	: INT := 0;
-	tila1			: BOOL;
-	tila2			: BOOL;
+	tila1	AT%I*		: BOOL;
+	tila2	AT%I*		: BOOL;
 	
 	//GUI
 	startGUI 		: BOOL;
@@ -39,7 +39,7 @@ VAR_GLOBAL
 	blinker1000ms	: BOOL;
 	muuVika			: BOOL;	
 	systemOn		: BOOL;
-	reset			: BOOL;
+	reset	AT%I*		: BOOL;
 	
 END_VAR]]></Declaration>
   </GVL>
