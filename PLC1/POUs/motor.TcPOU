@@ -60,7 +60,7 @@ JOG(
 	JogBackwards:= , 
 	Mode:= , 
 	Position:= , 
-	Velocity:= , 
+	Velocity:= 100, 
 	Acceleration:= , 
 	Deceleration:= , 
 	Jerk:= , 
@@ -91,10 +91,19 @@ Homing(
 		CASE GVL.driverMode OF
 			1:	IF GVL.playCCW THEN
 					JOG.JogForward := TRUE;
+				ELSE
+					JOG.JogForward := FALSE;
 				END_IF
 				
 				IF GVL.playCW THEN
 					JOG.JogBackwards := TRUE;
+				ELSE
+					JOG.JogBackwards := FALSE;
+				END_IF
+				
+				IF JOG.Done THEN
+					currentStepperSpeed 		:= stepperPower.Override;
+					//currentStepperPosition		:= stepperValue;					
 				END_IF
 			
 			2:	homing.HomingMode	:= MC_Direct;
@@ -109,7 +118,12 @@ Homing(
 				IF GVL.triggerGUI THEN
 					stepperMoveAbsolute.Position	:= stepperValue;
 					stepperMoveAbsolute.Velocity 	:= stepperSpeedGUI;
+					stepperPower.Override			:= stepperSpeedGUI;
 					stepperMoveAbsolute.Execute		:= TRUE;
+				END_IF
+				
+				IF stepperMoveAbsolute.Done THEN
+					stepperMoveAbsolute.Execute 	:= FALSE;
 					currentStepperSpeed 			:= stepperSpeedGUI;
 					currentStepperPosition			:= stepperValue;
 				END_IF
@@ -117,38 +131,9 @@ Homing(
 			3:	//IF kalibrointibtn THEN
 					//Kotiasentonollaus.Execute;
 				//END_IF
-				
-				IF referenssissa THEN
-					stepperMoveAbsolute.Position	:= stepperValue;
-					stepperMoveAbsolute.Velocity 	:= 10;
-					stepperMoveAbsolute.Execute		:= TRUE;
-				END_IF
-
-
-				IF NOT(lahestymiskytkin) THEN	
-					IF kalibrointibtn THEN
-						stepperSpeed := 10;
-						stepperValue := stepperValue + 1;
-					ELSE
-						stepperSpeed := 0;
-						stepperValue := 0;
-					END_IF					
-					stepperMoveAbsolute.Velocity 	:= stepperSpeed;
-					stepperMoveAbsolute.Position	:= stepperValue;
-					stepperMoveAbsolute.Execute		:= TRUE;
-					referenssissa := FALSE;
-				ELSE
-					stepperSpeed := 0;
-					stepperValue := 0;
-					referenssissa := TRUE;
-				END_IF
-				currentStepperSpeed 		:= stepperSpeed;
-				currentStepperPosition		:= stepperValue;
-		END_CASE	
-	END_IF
-
-	IF stepperMoveAbsolute.Done THEN
-		stepperMoveAbsolute.Execute := FALSE;
+								
+		END_CASE
+			
 	END_IF
 	
 //END_IF]]></ST>

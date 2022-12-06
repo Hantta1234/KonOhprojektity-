@@ -11,26 +11,28 @@ VAR_GLOBAL
 	stop	AT%I*	 	: BOOL;
 	playCW	AT%I*		: BOOL;
 	playCCW	AT%I*		: BOOL;
-	//stepperSpeed	: INT := 0;
 	tila1	AT%I*		: BOOL;
 	tila2	AT%I*		: BOOL;
+	reset	AT%I*		: BOOL;
+	//stepperSpeed	: INT := 0;
 	
 	//GUI
-	startGUI 		: BOOL;
-	stopGUI			: BOOL;
-	resetGUI		: BOOL;
-	asemannollausGUI : BOOL;
-	triggerGUI		: BOOL;
+	
+	startGUI 			: BOOL;
+	stopGUI				: BOOL;
+	resetGUI			: BOOL;
+	asemannollausGUI 	: BOOL;
+	triggerGUI			: BOOL;
 
 	//Lähdöt:
 
-	systemOnLight	: BOOL;
-	safetyOkLight	: BOOL;
-	startBtnLight	: BOOL;
-	stopBtnLight	: BOOL;
-	resetBtnLight	: BOOL;
-	playCWBtnLight	: BOOL;
-	playCCWBtnLight	: BOOL;
+	systemOnLight		AT%Q*	: BOOL;
+	safetyOkLight		AT%Q*	: BOOL;
+	startBtnLight		AT%Q*	: BOOL;
+	stopBtnLight		AT%Q*	: BOOL;
+	resetBtnLight		AT%Q*	: BOOL;
+	playCWBtnLight		AT%Q*	: BOOL;
+	playCCWBtnLight		AT%Q*	: BOOL;
 	
 	//Muut globaalit muuttujat:
 	
@@ -39,7 +41,6 @@ VAR_GLOBAL
 	blinker1000ms	: BOOL;
 	muuVika			: BOOL;	
 	systemOn		: BOOL;
-	reset	AT%I*		: BOOL;
 	
 END_VAR]]></Declaration>
   </GVL>
