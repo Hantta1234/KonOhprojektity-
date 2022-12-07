@@ -44,11 +44,11 @@ CASE GVL.driverMode OF
 			GVL.vikamuisti := FALSE;
 		END_IF
 		
-	3:	IF GVL.start AND NOT(GVL.vikamuisti) THEN
+	3:	IF GVL.startGUI AND NOT(GVL.vikamuisti) THEN
 			GVL.systemOn := TRUE;
 			driverModeVar := GVL.driverMode;
 		END_IF
-		IF NOT(GVL.safetyOk) OR GVL.stop THEN
+		IF NOT(GVL.safetyOk) OR GVL.stopGUI THEN
 			GVL.systemOn := FALSE;
 		END_IF		
 END_CASE

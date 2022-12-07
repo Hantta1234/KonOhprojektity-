@@ -12,8 +12,10 @@ VAR
 	stepperValue			: INT := 0;
 	stepperSpeed			: INT := 0;
 	stepperSpeedGUI			: INT := 0;
-	currentStepperSpeed		: INT;
-	currentStepperPosition	: INT;
+	currentStepperSpeed		: LREAL;
+	currentStepperPosition	: LREAL;
+	arvo					: INT;
+	homingSensor	AT%I*		: BOOL;
 	
 	kalibrointibtn			: BOOL;
 	lahestymiskytkin		: BOOL;
@@ -100,10 +102,11 @@ IF GVL.systemOn THEN
 			ELSE
 				JOG.JogBackwards := FALSE;
 			END_IF
-				
-			stepperSpeed	:= (gvl.potikka / 320);
-			stepperPower.Override	:= stepperSpeed;
-				
+			
+			arvo :=	(gvl.potikka / 320);
+			stepperSpeed	:= arvo;
+			//stepperPower.Override	:= stepperSpeed;
+			JOG.Velocity			:= stepperSpeed;	
 				
 		2:	homing.HomingMode	:= MC_Direct;
 			
@@ -124,16 +127,31 @@ IF GVL.systemOn THEN
 				
 			IF stepperMoveAbsolute.Done THEN
 				stepperMoveAbsolute.Execute 	:= FALSE;
-				currentStepperSpeed 			:= stepperSpeedGUI;
-				currentStepperPosition			:= stepperValue;
 			END_IF
 				
-		3:	//IF kalibrointibtn THEN
-				//Kotiasentonollaus.Execute;
-			//END_IF
+		3:	homing.HomingMode	:= MC_DefaultHoming;
+		
+			IF kalibrointibtn AND NOT(referenssissa) THEN
+				homing.Execute	:= TRUE;
+				IF homingSensor THEN
+					homing.bCalibrationCam	:= TRUE;
+					homing.Position			:= 0;
+					currentStepperPosition	:= 0;
+					referenssissa	:= TRUE;
+				END_IF
+			ELSE
+				homing.Execute	:= false;	
+			END_IF
+			
+			
+			IF homing.Done THEN
+				referenssissa	:= TRUE;
+			END_IF
+			
 								
 	END_CASE
-			
+	currentStepperSpeed 			:= stepperRef.NcToPlc.ActVelo;
+	currentStepperPosition			:= stepperRef.NcToPlc.ActPos;	
 END_IF
 ]]></ST>
     </Implementation>

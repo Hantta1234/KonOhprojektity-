@@ -10,8 +10,7 @@ END_VAR
 motor();
 light();
 control();
-blinker();
-//Hardware();]]></ST>
+blinker();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

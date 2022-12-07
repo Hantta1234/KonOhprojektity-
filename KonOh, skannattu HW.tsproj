@@ -1521,7 +1521,7 @@ External Setpoint Generation:
 					</AxisPara>
 					<Encoder Name="Enc" EncType="4">
 						<EncPara ScaleFactorNumerator="0.007363107781851" MaxCount="#x0000ffff">
-							<Inc RefSoftSyncMask="#x0000ffff"/>
+							<Inc RefMode="1" RefSoftSyncMask="#x0000ffff"/>
 							<TimeComp TimeCompMode="1" EncDelayCycles="4"/>
 						</EncPara>
 						<Vars VarGrpType="1">
@@ -1815,7 +1815,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{44656F13-9F57-4A81-8C34-62DAFB9303E1}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{DC77BD21-73D7-3130-16AB-B987E27EDB7A}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{173162CC-9731-00BD-8E71-E755C1FD0817}">
 					<Name>PLC1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -1823,6 +1823,16 @@ External Setpoint Generation:
 						<Var>
 							<Name>motor.stepperRef.NcToPlc</Name>
 							<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.safetyOk</Name>
+							<Comment><![CDATA[Laitteistoon liitetyt globaalit muuttujat:
+Tulot:]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>motor.homingSensor</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL.start</Name>
@@ -1955,12 +1965,14 @@ External Setpoint Generation:
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6000" Sub="#x01">
+								<Entry Name="GVL.safetyOk" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
+									<Comment><![CDATA[Laitteistoon liitetyt globaalit muuttujat:
+Tulot:]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6010" Sub="#x01">
+								<Entry Name="motor.homingSensor" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -2076,7 +2088,7 @@ External Setpoint Generation:
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="GVL.startBtnLight" Index="#x7030" Sub="#x01">
+								<Entry Name="GVL.safetyOkLight" Index="#x7030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -3303,6 +3315,10 @@ Bit 8 - 15 : reserved]]></Comment>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIPC^PLC1^PLC1 Instance">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1004)">
+				<Link VarA="PlcTask Inputs^GVL.safetyOk" VarB="Channel 1^GVL.safetyOk"/>
+				<Link VarA="PlcTask Inputs^motor.homingSensor" VarB="Channel 2^motor.homingSensor"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL1008)">
 				<Link VarA="PlcTask Inputs^GVL.playCCW" VarB="Channel 5^GVL.playCCW"/>
 				<Link VarA="PlcTask Inputs^GVL.playCW" VarB="Channel 4^GVL.playCW"/>
@@ -3314,9 +3330,7 @@ Bit 8 - 15 : reserved]]></Comment>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2008)">
 				<Link VarA="PlcTask Outputs^GVL.resetBtnLight" VarB="Channel 1^GVL.resetBtnLight"/>
-				<Link VarA="PlcTask Outputs^GVL.safetyOkLight" VarB="Channel 3^GVL.safetyOkLight"/>
-				<Link VarA="PlcTask Outputs^GVL.startBtnLight" VarB="Channel 4^GVL.startBtnLight"/>
-				<Link VarA="PlcTask Outputs^GVL.stopBtnLight" VarB="Channel 5^GVL.stopBtnLight"/>
+				<Link VarA="PlcTask Outputs^GVL.safetyOkLight" VarB="Channel 4^GVL.safetyOkLight"/>
 				<Link VarA="PlcTask Outputs^GVL.systemOnLight" VarB="Channel 2^GVL.systemOnLight"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL3102)">

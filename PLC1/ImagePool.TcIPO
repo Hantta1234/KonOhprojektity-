@@ -4,38 +4,48 @@
     <XmlArchive>
       <Data>
         <o xml:space="preserve" t="ImagePoolObject">
-          <v n="UniqueIdGenerator">"13"</v>
+          <v n="UniqueIdGenerator">"30"</v>
           <l n="BitmapPool" t="ArrayList" cet="ImagePoolItem">
             <o>
               <v n="BitmapID">"taustis"</v>
               <v n="FileID">"5ce3da45-db07-42e7-a21c-a00fff4ed8f6|C:\Users\vilja\Pictures\harjus3.jpg"</v>
-              <v n="ItemID">1</v>
+              <v n="ItemID">14</v>
             </o>
             <o>
               <v n="BitmapID">"taustis2"</v>
               <v n="FileID">"5ce3da45-db07-42e7-a21c-a00fff4ed8f6|C:\Users\vilja\Downloads\Hatala.png"</v>
-              <v n="ItemID">2</v>
-            </o>
-            <o>
-              <v n="BitmapID">"taustis3"</v>
-              <v n="FileID">"5ce3da45-db07-42e7-a21c-a00fff4ed8f6|C:\Users\vilja\Downloads\hätälä2.jpg"</v>
-              <v n="ItemID">5</v>
+              <v n="ItemID">15</v>
             </o>
             <o>
               <v n="BitmapID">"sähkökaavio"</v>
               <v n="FileID">"5ce3da45-db07-42e7-a21c-a00fff4ed8f6|C:\Users\vilja\Downloads\sähkökaavioesim.jpg"</v>
-              <v n="ItemID">8</v>
+              <v n="ItemID">17</v>
+            </o>
+            <o>
+              <v n="BitmapID">"beckhoff_koulutuslaitteistot, sähkökuvat, v1_page-0001"</v>
+              <v n="FileID">"5ce3da45-db07-42e7-a21c-a00fff4ed8f6|C:\Users\vilja\Pictures\Saved Pictures\beckhoff_koulutuslaitteistot, sähkökuvat, v1_page-0001.jpg"</v>
+              <v n="ItemID">23</v>
+            </o>
+            <o>
+              <v n="BitmapID">"beckhoff_koulutuslaitteistot, sähkökuvat, v1_page-0002"</v>
+              <v n="FileID">"5ce3da45-db07-42e7-a21c-a00fff4ed8f6|C:\Users\vilja\Pictures\Saved Pictures\beckhoff_koulutuslaitteistot, sähkökuvat, v1_page-0002.jpg"</v>
+              <v n="ItemID">25</v>
+            </o>
+            <o>
+              <v n="BitmapID">"beckhoff_koulutuslaitteistot, sähkökuvat, v1_page-0003"</v>
+              <v n="FileID">"5ce3da45-db07-42e7-a21c-a00fff4ed8f6|C:\Users\vilja\Pictures\Saved Pictures\beckhoff_koulutuslaitteistot, sähkökuvat, v1_page-0003.jpg"</v>
+              <v n="ItemID">27</v>
             </o>
             <o>
               <v n="BitmapID">""</v>
               <v n="FileID">""</v>
-              <v n="ItemID">11</v>
+              <v n="ItemID">29</v>
             </o>
           </l>
           <v n="GuidInit">{deca6e5a-e1e7-4eac-8b84-fdbec6914978}</v>
           <v n="GuidReInit">{f915c810-17a7-4722-89a6-14cf8ac0fb8c}</v>
           <v n="GuidExitX">{cc327e93-1435-4080-8140-b07341162839}</v>
-          <v n="ValidIds">false</v>
+          <v n="ValidIds">true</v>
         </o>
       </Data>
       <TypeList>

@@ -6,7 +6,7 @@ VAR_GLOBAL
 	
 	//Laitteistoon liitetyt globaalit muuttujat:
 	//Tulot:
-	safetyOk			: BOOL := TRUE;
+	safetyOk AT%I*		: BOOL;
 	start 	AT%I*		: BOOL;
 	stop	AT%I*	 	: BOOL;
 	playCW	AT%I*		: BOOL;

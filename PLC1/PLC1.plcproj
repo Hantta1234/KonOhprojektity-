@@ -17,9 +17,6 @@
     <LibraryReferences>{69d9ce39-06c1-4493-bb39-8e811fe804e8}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\DUT.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
@@ -37,9 +34,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\control.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Hardware.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\light.TcPOU">
