@@ -101,10 +101,9 @@ Homing(
 					JOG.JogBackwards := FALSE;
 				END_IF
 				
-				IF JOG.Done THEN
-					currentStepperSpeed 		:= stepperPower.Override;
-					//currentStepperPosition		:= stepperValue;					
-				END_IF
+				stepperSpeed	:= (gvl.potikka / 320);
+				stepperPower.Override	:= stepperSpeed;
+				
 			
 			2:	homing.HomingMode	:= MC_Direct;
 			

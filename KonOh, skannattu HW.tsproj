@@ -1813,7 +1813,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{44656F13-9F57-4A81-8C34-62DAFB9303E1}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{D9223325-4B9C-690A-3EF8-EB794E548968}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{DC77BD21-73D7-3130-16AB-B987E27EDB7A}">
 					<Name>PLC1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -1840,7 +1840,6 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>GVL.tila1</Name>
-							<Comment><![CDATA[stepperSpeed	: INT := 0;]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1851,12 +1850,45 @@ External Setpoint Generation:
 							<Name>GVL.reset</Name>
 							<Type>BOOL</Type>
 						</Var>
+						<Var>
+							<Name>GVL.potikka</Name>
+							<Type>INT</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
 						<Var>
 							<Name>motor.stepperRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.systemOnLight</Name>
+							<Comment><![CDATA[Lähdöt:]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.safetyOkLight</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.startBtnLight</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.stopBtnLight</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.resetBtnLight</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.playCWBtnLight</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.playCCWBtnLight</Name>
+							<Type>BOOL</Type>
 						</Var>
 					</Vars>
 					<Contexts>
@@ -3211,9 +3243,6 @@ Bit 8 - 15 : reserved]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-0010-0304-3000-040310000403}" Id="#x02030020"/>
-		<MappingInfo Identifier="{00000000-0020-0304-3000-040322000403}" Id="#x02030040"/>
-		<MappingInfo Identifier="{00000000-2041-0850-4020-500841000403}" Id="#x02030030"/>
 		<MappingInfo Identifier="{05000010-2041-0850-3000-040340205008}" Id="#x02030010" Watchdog="14000000040000000400000004000000"/>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis 2, servo">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 9 (EK1100)^Term 11 (EL7211-0010)">

@@ -14,7 +14,7 @@ VAR_GLOBAL
 	tila1	AT%I*		: BOOL;
 	tila2	AT%I*		: BOOL;
 	reset	AT%I*		: BOOL;
-	//stepperSpeed	: INT := 0;
+	potikka AT%I*		: INT ;
 	
 	//GUI
 	
