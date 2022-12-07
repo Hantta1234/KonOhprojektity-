@@ -9,9 +9,9 @@ END_VAR
       <ST><![CDATA[//Hannes Viljamaa
 motor();
 light();
-//Hardware();
 control();
-blinker();]]></ST>
+blinker();
+//Hardware();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

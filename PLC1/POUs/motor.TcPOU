@@ -86,56 +86,56 @@ Homing(
 	Error=> , 
 	ErrorID=> );
 	
-//IF stepperPower.Status THEN
-	IF GVL.systemOn THEN
-		CASE GVL.driverMode OF
-			1:	IF GVL.playCCW THEN
-					JOG.JogForward := TRUE;
-				ELSE
-					JOG.JogForward := FALSE;
-				END_IF
+
+IF GVL.systemOn THEN
+	CASE GVL.driverMode OF
+		1:	IF GVL.playCCW THEN
+				JOG.JogForward := TRUE;
+			ELSE
+				JOG.JogForward := FALSE;
+			END_IF
 				
-				IF GVL.playCW THEN
-					JOG.JogBackwards := TRUE;
-				ELSE
-					JOG.JogBackwards := FALSE;
-				END_IF
+			IF GVL.playCW THEN
+				JOG.JogBackwards := TRUE;
+			ELSE
+				JOG.JogBackwards := FALSE;
+			END_IF
 				
-				stepperSpeed	:= (gvl.potikka / 320);
-				stepperPower.Override	:= stepperSpeed;
+			stepperSpeed	:= (gvl.potikka / 320);
+			stepperPower.Override	:= stepperSpeed;
 				
+				
+		2:	homing.HomingMode	:= MC_Direct;
 			
-			2:	homing.HomingMode	:= MC_Direct;
-			
-				IF GVL.asemannollausGUI THEN
-					homing.Execute := TRUE;
-					homing.Position := 0;
-				ELSE
-					homing.Execute := FALSE;
-				END_IF
+			IF GVL.asemannollausGUI THEN
+				homing.Execute			:= TRUE;
+				homing.Position			:= 0;
+				currentStepperPosition	:= 0;
+			ELSE
+				homing.Execute := FALSE;
+			END_IF
 				
-				IF GVL.triggerGUI THEN
-					stepperMoveAbsolute.Position	:= stepperValue;
-					stepperMoveAbsolute.Velocity 	:= stepperSpeedGUI;
-					stepperPower.Override			:= stepperSpeedGUI;
-					stepperMoveAbsolute.Execute		:= TRUE;
-				END_IF
+			IF GVL.triggerGUI THEN
+				stepperMoveAbsolute.Position	:= stepperValue;
+				stepperMoveAbsolute.Velocity 	:= stepperSpeedGUI;
+				stepperPower.Override			:= stepperSpeedGUI;
+				stepperMoveAbsolute.Execute		:= TRUE;
+			END_IF
 				
-				IF stepperMoveAbsolute.Done THEN
-					stepperMoveAbsolute.Execute 	:= FALSE;
-					currentStepperSpeed 			:= stepperSpeedGUI;
-					currentStepperPosition			:= stepperValue;
-				END_IF
+			IF stepperMoveAbsolute.Done THEN
+				stepperMoveAbsolute.Execute 	:= FALSE;
+				currentStepperSpeed 			:= stepperSpeedGUI;
+				currentStepperPosition			:= stepperValue;
+			END_IF
 				
-			3:	//IF kalibrointibtn THEN
-					//Kotiasentonollaus.Execute;
-				//END_IF
+		3:	//IF kalibrointibtn THEN
+				//Kotiasentonollaus.Execute;
+			//END_IF
 								
-		END_CASE
+	END_CASE
 			
-	END_IF
-	
-//END_IF]]></ST>
+END_IF
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
