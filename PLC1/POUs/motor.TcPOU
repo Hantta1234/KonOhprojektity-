@@ -46,7 +46,7 @@ stepperMoveAbsolute(
 	Axis:= stepperRef, 
 	Execute:= , 
 	Position:= , 
-	Velocity:= , 
+	Velocity:= 100, 
 	Acceleration:= , 
 	Deceleration:= , 
 	Jerk:= , 
