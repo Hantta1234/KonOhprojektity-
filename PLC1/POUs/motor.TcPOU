@@ -97,7 +97,7 @@ IF GVL.systemOn THEN
 	
 	CASE GVL.driverMode OF
 		
-		1:	positionMatch	:= FALSE:
+		1:	positionMatch	:= FALSE;
 		
 			IF GVL.playCCW THEN
 				JOG.JogForward := TRUE;
@@ -116,7 +116,7 @@ IF GVL.systemOn THEN
 			stepperPower.Override	:= stepperSpeed;	
 				
 		2:	homing.HomingMode		:= MC_Direct;
-			positionMatch			:= FALSE:
+			positionMatch			:= FALSE;
 			
 			IF GVL.asemannollausGUI THEN
 				homing.Execute			:= TRUE;
@@ -141,7 +141,7 @@ IF GVL.systemOn THEN
 		
 			IF kalibrointibtn THEN
 				homing.Execute	:= TRUE;
-				positionMatch	:= FALSE:
+				positionMatch	:= FALSE;
 				IF homingSensor THEN
 					homing.bCalibrationCam	:= TRUE;
 					homing.Position			:= 0;
@@ -161,12 +161,12 @@ IF GVL.systemOn THEN
 					stepperPower.Override			:= stepperSpeedVay;
 					stepperMoveAbsolute.Execute		:= TRUE;
 					referenssissa					:= FALSE;
-					positionMatch					:= FALSE:
+					positionMatch					:= FALSE;
 				END_IF
 			END_IF
 			
 			IF stepperMoveAbsolute.Done THEN
-				positionMatch					:= TRUE:
+				positionMatch					:= TRUE;
 				stepperMoveAbsolute.Execute 	:= FALSE;
 			END_IF		
 								

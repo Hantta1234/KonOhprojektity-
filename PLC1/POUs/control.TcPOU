@@ -50,7 +50,15 @@ CASE GVL.driverMode OF
 		END_IF
 		IF NOT(GVL.safetyOk) OR GVL.stopGUI THEN
 			GVL.systemOn := FALSE;
-		END_IF		
+		END_IF
+		
+		IF NOT(GVL.safetyOk) THEN
+			GVL.vikamuisti := TRUE;
+		END_IF
+		IF GVL.resetGUI THEN
+			GVL.vikamuisti := FALSE;
+		END_IF
+		
 END_CASE
 
 IF driverModeVar <> GVL.driverMode THEN

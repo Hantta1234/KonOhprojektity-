@@ -989,11 +989,11 @@
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">34</v>
+                      <v n="Value">36</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">209</v>
+                      <v n="Value">206</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -3610,7 +3610,7 @@
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">246</v>
+                      <v n="Value">250</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
@@ -3618,7 +3618,7 @@
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
-                      <v n="Value">207</v>
+                      <v n="Value">212</v>
                     </o>
                     <o>
                       <v n="Id">2134141914L</v>
@@ -3657,7 +3657,7 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"motor.stepperSpeedGUI"</v>
+                      <v n="Value">"motor.stepperSpeedVay"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -3676,15 +3676,34 @@
                 <v n="VisualElementName">"Textfield"</v>
                 <v n="VisualElementTypeName">"VisuFbElemTextfield"</v>
                 <v n="VisualElementIsRectangle">true</v>
-                <v n="VisualElementIdentifier">"GenElemInst_80"</v>
+                <v n="VisualElementIdentifier">"GenElemInst_82"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
-                <v n="VisualElementIdentification">{dd0de937-395b-40da-8223-49ff38421a33}</v>
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="InputBoxInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="InputBoxInputAction">
+                    <o>
+                      <v n="InputBoxVariable">""</v>
+                      <v n="InputType">"Default"</v>
+                      <v n="InputBoxMin">""</v>
+                      <v n="InputBoxMax">""</v>
+                      <v n="InputBoxDialogTitle">""</v>
+                      <v n="Password">false</v>
+                      <v n="UseTextOutputVariable">true</v>
+                      <v n="TextOutputVariableInitialized">true</v>
+                      <v n="OtherVarConversion">""</v>
+                      <v n="Format">""</v>
+                      <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
+                      <v n="DialogXPos">""</v>
+                      <v n="DialogYPos">""</v>
+                    </o>
+                  </a>
+                </d>
+                <v n="VisualElementIdentification">{bc535b40-720d-4cf0-91b7-1c77359737cf}</v>
                 <v n="VisualElementOwningObjectGuid">{45ca7430-5d9c-404d-a6c0-2d552295d7a1}</v>
                 <a n="LMGuids" et="Guid" />
                 <d n="SubElements" t="Hashtable" />
-                <v n="VisualElementId">78</v>
+                <v n="VisualElementId">80</v>
                 <l n="UserManagementAccessRights" t="ArrayList" />
               </o>
               <o>
@@ -3775,11 +3794,11 @@
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">26</v>
+                      <v n="Value">27</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">363</v>
+                      <v n="Value">366</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -3822,7 +3841,7 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"motor.stepperValue"</v>
+                      <v n="Value">"motor.stepperValueVay"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -3841,7 +3860,7 @@
                 <v n="VisualElementName">"Textfield"</v>
                 <v n="VisualElementTypeName">"VisuFbElemTextfield"</v>
                 <v n="VisualElementIsRectangle">true</v>
-                <v n="VisualElementIdentifier">"GenElemInst_82"</v>
+                <v n="VisualElementIdentifier">"GenElemInst_84"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
                 <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="InputBoxInputAction[]">
@@ -3864,11 +3883,11 @@
                     </o>
                   </a>
                 </d>
-                <v n="VisualElementIdentification">{bc535b40-720d-4cf0-91b7-1c77359737cf}</v>
+                <v n="VisualElementIdentification">{1cea488a-565f-4aca-b937-17dbb90a2e26}</v>
                 <v n="VisualElementOwningObjectGuid">{45ca7430-5d9c-404d-a6c0-2d552295d7a1}</v>
                 <a n="LMGuids" et="Guid" />
                 <d n="SubElements" t="Hashtable" />
-                <v n="VisualElementId">80</v>
+                <v n="VisualElementId">83</v>
                 <l n="UserManagementAccessRights" t="ArrayList" />
               </o>
             </l>
@@ -3977,10 +3996,10 @@
               <d n="FbMethods" t="CaseInsensitiveHashtable" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>cde84e73-2598-40b2-a750-beb3c6897cc7</v>
-                <v>FB_Reinit</v>
-                <v>e2ef092a-ed37-43f1-a4f1-5dc806515abc</v>
                 <v>FB_Exit</v>
                 <v>e57d9ba1-28b4-4969-8522-5b91d3788c46</v>
+                <v>FB_Reinit</v>
+                <v>e2ef092a-ed37-43f1-a4f1-5dc806515abc</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{e82e96ad-c342-49a4-9423-7ac488aeaaca}</v>
@@ -4024,7 +4043,7 @@
             </o>
             <v n="DialogDut">{d14d77ce-3e2b-4b81-8400-37200a26b6ab}</v>
           </o>
-          <v n="LastUsedIdForIdentifier">82</v>
+          <v n="LastUsedIdForIdentifier">84</v>
           <o n="TextDocument" t="TextDocument">
             <a n="TextLines" cet="TextLine">
               <o>
