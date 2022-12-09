@@ -8,6 +8,7 @@ VAR
 	stepperMoveAbsolute		: MC_MoveAbsolute;
 	JOG						: MC_jog;
 	Homing					: MC_Home; //usermode 3 varten
+	stepperReset			: MC_reset;
 	
 	stepperValue			: INT := 0;
 	stepperSpeed			: INT := 100;
@@ -23,7 +24,7 @@ VAR
 	lahestymiskytkin		: BOOL;
 	referenssissa			: BOOL;
 	positionMatch			: BOOL;
-	
+	referenssissaVar		: bool;
 	
 END_VAR
 ]]></Declaration>
@@ -46,7 +47,7 @@ stepperMoveAbsolute(
 	Axis:= stepperRef, 
 	Execute:= , 
 	Position:= , 
-	Velocity:= 100, 
+	Velocity:= , 
 	Acceleration:= , 
 	Deceleration:= , 
 	Jerk:= , 
@@ -65,7 +66,7 @@ JOG(
 	JogBackwards:= , 
 	Mode:= , 
 	Position:= , 
-	Velocity:= 100, 
+	Velocity:= , 
 	Acceleration:= , 
 	Deceleration:= , 
 	Jerk:= , 
@@ -90,6 +91,14 @@ Homing(
 	CommandAborted=> , 
 	Error=> , 
 	ErrorID=> );
+
+stepperReset(
+	Axis:= stepperRef, 
+	Execute:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
 	
 
 IF GVL.systemOn THEN
@@ -98,6 +107,7 @@ IF GVL.systemOn THEN
 	CASE GVL.driverMode OF
 		
 		1:	positionMatch	:= FALSE;
+			referenssissa	:= FALSE;
 		
 			IF GVL.playCCW THEN
 				JOG.JogForward := TRUE;
@@ -117,6 +127,7 @@ IF GVL.systemOn THEN
 				
 		2:	homing.HomingMode		:= MC_Direct;
 			positionMatch			:= FALSE;
+			referenssissa			:= FALSE;
 			
 			IF GVL.asemannollausGUI THEN
 				homing.Execute			:= TRUE;
@@ -128,8 +139,8 @@ IF GVL.systemOn THEN
 				
 			IF GVL.triggerGUI THEN
 				stepperMoveAbsolute.Position	:= stepperValue;
-				//stepperMoveAbsolute.Velocity 	:= stepperSpeedGUI;
-				stepperPower.Override			:= stepperSpeedGUI;
+				stepperMoveAbsolute.Velocity 	:= stepperSpeedGUI;
+				//stepperPower.Override			:= stepperSpeedGUI;
 				stepperMoveAbsolute.Execute		:= TRUE;
 			END_IF
 				
@@ -142,25 +153,27 @@ IF GVL.systemOn THEN
 			IF kalibrointibtn THEN
 				homing.Execute	:= TRUE;
 				positionMatch	:= FALSE;
-				IF homingSensor THEN
-					homing.bCalibrationCam	:= TRUE;
-					homing.Position			:= 0;
-					currentStepperPosition	:= 0;
-					referenssissa	:= TRUE;
-				ELSE
-					homing.bCalibrationCam	:= FALSE;
-				END_IF
 			ELSE
-				homing.Execute	:= false;	
+				homing.Execute	:= FALSE;
+				homing.bCalibrationCam	:= FALSE;	
+			END_IF
+			
+			IF homingSensor THEN
+				homing.bCalibrationCam	:= TRUE;
+				referenssissa			:= TRUE;
+				referenssissaVar		:= TRUE;
+				homing.Execute			:= FALSE;
 			END_IF
 						
 			IF referenssissa THEN
+				homing.Position			:= 0;
+				currentStepperPosition	:= 0;
 				IF GVL.triggerGUI THEN
 					stepperMoveAbsolute.Position	:= stepperValueVay;
-					//stepperMoveAbsolute.Velocity 	:= stepperSpeedVay;
-					stepperPower.Override			:= stepperSpeedVay;
+					stepperMoveAbsolute.Velocity 	:= stepperSpeedVay;
+					//stepperPower.Override			:= stepperSpeedVay;
 					stepperMoveAbsolute.Execute		:= TRUE;
-					referenssissa					:= FALSE;
+					referenssissaVar				:= FALSE;
 					positionMatch					:= FALSE;
 				END_IF
 			END_IF
@@ -174,7 +187,15 @@ IF GVL.systemOn THEN
 	currentStepperSpeed 			:= stepperRef.NcToPlc.ActVelo;
 	currentStepperPosition			:= stepperRef.NcToPlc.ActPos;
 ELSE
-	stepperPower.Enable	:= FALSE;
+	stepperPower.Enable			:= FALSE;
+	stepperMoveAbsolute.Execute	:= FALSE;
+	homing.Execute				:= FALSE;
+END_IF
+
+IF GVL.reset OR gvl.resetGUI OR GVL.start OR gvl.startGUI THEN
+	stepperReset.Execute	:= TRUE;
+ELSE
+	stepperReset.Execute	:= FALSE;
 END_IF
 ]]></ST>
     </Implementation>
