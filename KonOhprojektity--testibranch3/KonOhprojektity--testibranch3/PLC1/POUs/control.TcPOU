@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="control" Id="{f4192589-e639-46b2-82cf-0b85b345678c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM control
+VAR
+	driverModeVar	: INT :=1;
+	driverMode1		: BOOL;
+	driverMode2		: BOOL;
+	driverMode3		: BOOL;
+	invisibleGUI	: BOOL := FALSE;
+	visibleGUI		: BOOL := FALSE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Laitteen tilan asetus:
+CASE GVL.driverMode OF
+	1:	IF GVL.start AND NOT(GVL.errorMemory) THEN
+			GVL.systemOn := TRUE;
+			driverModeVar := GVL.driverMode;
+		END_IF
+		IF NOT(GVL.safetyOk) OR GVL.stop THEN
+			GVL.systemOn := FALSE;
+		END_IF
+		
+		IF NOT(GVL.safetyOk) THEN
+			GVL.errorMemory := TRUE;
+		END_IF
+		IF GVL.reset THEN
+			GVL.errorMemory := FALSE;
+		END_IF
+		
+	2:	IF GVL.startGUI AND NOT(GVL.errorMemory) THEN
+			GVL.systemOn := TRUE;
+			driverModeVar := GVL.driverMode;
+		END_IF
+		IF NOT(GVL.safetyOk) OR GVL.stopGUI THEN
+			GVL.systemOn := FALSE;
+		END_IF
+		
+		IF NOT(GVL.safetyOk) THEN
+			GVL.errorMemory := TRUE;
+		END_IF
+		IF GVL.resetGUI THEN
+			GVL.errorMemory := FALSE;
+		END_IF
+		
+	3:	IF GVL.startGUI AND NOT(GVL.errorMemory) THEN
+			GVL.systemOn := TRUE;
+			driverModeVar := GVL.driverMode;
+		END_IF
+		IF NOT(GVL.safetyOk) OR GVL.stopGUI THEN
+			GVL.systemOn := FALSE;
+		END_IF
+		
+		IF NOT(GVL.safetyOk) THEN
+			GVL.errorMemory := TRUE;
+		END_IF
+		IF GVL.resetGUI THEN
+			GVL.errorMemory := FALSE;
+		END_IF
+		
+END_CASE
+
+IF driverModeVar <> GVL.driverMode THEN
+	GVL.systemOn := FALSE;
+END_IF
+
+IF GVL.driverMode = 3 THEN
+	invisibleGUI := TRUE;
+	visibleGUI := FALSE;
+ELSE
+	invisibleGUI := FALSE;
+	visibleGUI := TRUE; 
+END_IF
+
+//IF GVL.start THEN
+//	driverModeVar := GVL.driverMode;
+//END_IF
+
+IF GVL.state1 AND NOT(GVL.state2) THEN
+	GVL.driverMode := 1;
+	driverMode1 := FALSE;
+ELSE
+	driverMode1 := TRUE;
+END_IF
+
+IF NOT(GVL.state2) AND NOT(GVL.state1) THEN
+	GVL.driverMode := 2;
+	driverMode2 := FALSE;
+ELSE
+	driverMode2 := TRUE;
+END_IF
+
+IF NOT(GVL.state1) AND GVL.state2 THEN
+	GVL.driverMode := 3;
+	driverMode3 := FALSE;
+ELSE
+	driverMode3 := TRUE;
+END_IF
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="light" Id="{fd2f7f95-e065-4823-9a5a-de3dba8e7db8}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM light
+VAR
+	otherError	: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF GVL.systemOn OR GVL.playCW THEN
+	GVL.systemOnLight := TRUE;
+ELSIF (NOT(GVL.errorMemory) AND GVL.blinker1000ms) THEN
+	GVL.systemOnLight := TRUE;
+ELSE
+	GVL.systemOnLight :=FALSE;
+END_IF
+
+IF GVL.stop THEN
+	GVL.stopBtnLight := TRUE;
+ELSE
+	GVL.stopBtnLight :=FALSE;
+END_IF
+
+IF GVL.playCCW THEN
+	GVL.playCCWBtnLight := TRUE;
+ELSE
+	GVL.playCCWBtnLight :=FALSE;
+END_IF
+
+IF NOT(GVL.safetyOk) OR GVL.start THEN
+	GVL.safetyOkLight := TRUE;
+ELSE
+	IF  GVL.blinker1000ms AND (otherError OR GVL.errorMemory) THEN
+		GVL.safetyOkLight := TRUE;
+	ELSE
+		GVL.safetyOkLight := FALSE;
+	END_IF
+	
+	IF GVL.errorMemory AND NOT(otherError) OR gvl.reset THEN
+		GVL.resetBtnLight := TRUE;	
+	ELSE
+		GVL.resetBtnLight := FALSE;
+	END_IF
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

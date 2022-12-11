@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="motor" Id="{28df45ae-e7e9-491f-8b3b-598937c01a46}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM motor
+VAR
+	stepperRef				: AXIS_REF;
+	stepperPower			: MC_Power;
+	stepperMoveAbsolute		: MC_MoveAbsolute;
+	JOG						: MC_jog;
+	Homing					: MC_Home; //usermode 3 varten
+	stepperReset			: MC_reset;
+	
+	stepperValue			: INT := 0;
+	stepperSpeed			: INT := 100;
+	stepperSpeedGUI			: INT := 0;
+	stepperSpeedVay			: INT := 0;
+	stepperValueVay			: INT := 0;
+	currentStepperSpeed		: LREAL;
+	currentStepperPosition	: LREAL;
+	arvo					: INT;
+	homingSensor AT%I*		: BOOL;
+	
+	calibrationBtn			: BOOL;
+	approachSensor			: BOOL;
+	inReference				: BOOL;
+	positionMatch			: BOOL;
+	inReferenceVar			: BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stepperPower(
+	Axis:= stepperRef, 
+	Enable:= , 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= stepperSpeed, 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Active=> , 
+	Error=> , 
+	ErrorID=> );
+	
+stepperMoveAbsolute(
+	Axis:= stepperRef, 
+	Execute:= , 
+	Position:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+JOG(
+	Axis:= stepperRef, 
+	JogForward:= , 
+	JogBackwards:= , 
+	Mode:= , 
+	Position:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );	
+
+Homing(
+	Axis:= stepperRef, 
+	Execute:= , 
+	Position:= , 
+	HomingMode:= , 
+	BufferMode:= , 
+	Options:= , 
+	bCalibrationCam:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+stepperReset(
+	Axis:= stepperRef, 
+	Execute:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+
+IF GVL.systemOn THEN
+	stepperPower.Enable	:= TRUE;
+	
+	CASE GVL.driverMode OF
+		
+		1:	positionMatch	:= FALSE;
+			inReference		:= FALSE;
+		
+			IF GVL.playCCW THEN
+				JOG.JogForward := TRUE;
+			ELSE
+				JOG.JogForward := FALSE;
+			END_IF
+				
+			IF GVL.playCW THEN
+				JOG.JogBackwards := TRUE;
+			ELSE
+				JOG.JogBackwards := FALSE;
+			END_IF
+			
+			arvo 					:=	(gvl.potentioMeter / 325);
+			stepperSpeed			:= arvo;
+			stepperPower.Override	:= stepperSpeed;	
+				
+		2:	homing.HomingMode		:= MC_Direct;
+			positionMatch			:= FALSE;
+			inReference				:= FALSE;
+			
+			IF GVL.positionResetGUI THEN
+				homing.Execute			:= TRUE;
+				homing.Position			:= 0;
+				currentStepperPosition	:= 0;
+			ELSE
+				homing.Execute := FALSE;
+			END_IF
+				
+			IF GVL.triggerGUI THEN
+				stepperMoveAbsolute.Position	:= stepperValue;
+				stepperMoveAbsolute.Velocity 	:= stepperSpeedGUI;
+				//stepperPower.Override			:= stepperSpeedGUI;
+				stepperMoveAbsolute.Execute		:= TRUE;
+			END_IF
+				
+			IF stepperMoveAbsolute.Done THEN
+				stepperMoveAbsolute.Execute 	:= FALSE;
+			END_IF
+				
+		3:	homing.HomingMode	:= MC_DefaultHoming;
+		
+			IF calibrationBtn THEN
+				homing.Execute			:= TRUE;
+				positionMatch			:= FALSE;
+			ELSE
+				homing.Execute			:= FALSE;
+				homing.bCalibrationCam	:= FALSE;	
+			END_IF
+			
+			IF homingSensor THEN
+				homing.bCalibrationCam	:= TRUE;
+				inReference				:= TRUE;
+				inReferenceVar			:= TRUE;
+				homing.Execute			:= FALSE;
+			END_IF
+						
+			IF inReference THEN
+				homing.Position			:= 0;
+				currentStepperPosition	:= 0;
+				IF GVL.triggerGUI THEN
+					stepperMoveAbsolute.Position	:= stepperValueVay;
+					stepperMoveAbsolute.Velocity 	:= stepperSpeedVay;
+					//stepperPower.Override			:= stepperSpeedVay;
+					stepperMoveAbsolute.Execute		:= TRUE;
+					inReferenceVar					:= FALSE;
+					positionMatch					:= FALSE;
+				END_IF
+			END_IF
+			
+			IF stepperMoveAbsolute.Done THEN
+				positionMatch					:= TRUE;
+				stepperMoveAbsolute.Execute 	:= FALSE;
+			END_IF		
+								
+	END_CASE
+	currentStepperSpeed 			:= stepperRef.NcToPlc.ActVelo;
+	currentStepperPosition			:= stepperRef.NcToPlc.ActPos;
+ELSE
+	stepperPower.Enable			:= FALSE;
+	stepperMoveAbsolute.Execute	:= FALSE;
+	homing.Execute				:= FALSE;
+END_IF
+
+IF GVL.reset OR gvl.resetGUI OR GVL.start OR gvl.startGUI THEN
+	stepperReset.Execute	:= TRUE;
+ELSE
+	stepperReset.Execute	:= FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
