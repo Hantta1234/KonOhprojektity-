@@ -1488,7 +1488,7 @@ External Setpoint Generation:
 		<ImageData Id="1006">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0000000c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffc0c0c0c0c0c0000000000000000000000000000000000000000000c0c0c0c0c0c0808080007fff007fff007fff007fffc0c0c0c0c0c00000000000000000000000000000000000000000000000ffc0c0c0808080007fff007fff007fff007fffc0c0c0c0c0c0000000000000000000000000000000000000000000c0c0c0c0c0c0808080007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0000000c0c0c0c0c0c0000000c0c0c0c0c0c0808080007fff007fff007fff007fffc0c0c0c0c0c0000000000000000000000000c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080</ImageData>
 		<ImageData Id="1007">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
-	<Project ProjectGUID="{5D93C1C9-39A9-42D3-AB2D-2FEC208473D1}" TargetNetId="192.168.0.5.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
+	<Project ProjectGUID="{5D93C1C9-39A9-42D3-AB2D-2FEC208473D1}" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
 			<Tasks>
 				<Task Id="5" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
@@ -1815,7 +1815,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{44656F13-9F57-4A81-8C34-62DAFB9303E1}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{6A9E259E-1FC6-3EC3-9303-5EBA8C3C41CF}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{9E531889-5657-92DD-4CF5-342A84E931A3}">
 					<Name>PLC1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -1823,10 +1823,6 @@ External Setpoint Generation:
 						<Var>
 							<Name>motor.stepperRef.NcToPlc</Name>
 							<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>motor.homingSensor</Name>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL.safetyOk</Name>
@@ -1851,19 +1847,23 @@ Tulot:]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL.tila1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.tila2</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL.reset</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL.potikka</Name>
+							<Name>GVL.status1</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.status2</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.homingSensor</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.potentiometer</Name>
 							<Type>INT</Type>
 						</Var>
 					</Vars>
@@ -1903,6 +1903,28 @@ Tulot:]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>
+					<UnrestoredVarLinks ImportTime="2022-12-12T15:22:23">
+						<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
+							<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL1008)">
+								<Link VarA="GVL.tila1" TypeA="BOOL" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Channel 1^GVL.tila1" Size="1" RestoreInfo="ANotFound"/>
+								<Link VarA="GVL.tila2" TypeA="BOOL" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Channel 2^GVL.tila2" Size="1" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2022-12-12T15:27:11">
+						<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
+							<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL3102)">
+								<Link VarA="GVL.potikka" TypeA="INT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000006}" VarB="AI Standard Channel 1^GVL.potikka" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2022-12-12T15:40:50">
+						<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
+							<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1004)">
+								<Link VarA="motor.homingSensor" TypeA="BOOL" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Channel 2^motor.homingSensor" Size="1" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
 					<Contexts>
 						<Context>
 							<Id NeedCalleeCall="true">0</Id>
@@ -1921,7 +1943,7 @@ Tulot:]]></Comment>
 			</Project>
 		</Plc>
 		<Io>
-			<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="192.168.0.5.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
+			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="10.4.0.217.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
 				<Name>Device 1 (EtherCAT)</Name>
 				<AddressInfo>
 					<Ccat>
@@ -1972,7 +1994,7 @@ Tulot:]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="motor.homingSensor" Index="#x6010" Sub="#x01">
+								<Entry Name="GVL.homingSensor" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -1995,13 +2017,12 @@ Tulot:]]></Comment>
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="GVL.tila1" Index="#x6000" Sub="#x01">
+								<Entry Name="GVL.status1" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
-									<Comment><![CDATA[stepperSpeed	: INT := 0;]]></Comment>
 								</Entry>
 							</Pdo>
 							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="GVL.tila2" Index="#x6010" Sub="#x01">
+								<Entry Name="GVL.status2" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -2194,7 +2215,7 @@ Bit1: Value smaller than Limit1]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x6000" Sub="#x10">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="GVL.potikka" Index="#x6000" Sub="#x11" Flags="#x00010000">
+								<Entry Name="GVL.potentiometer" Index="#x6000" Sub="#x11" Flags="#x00010000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -3258,9 +3279,6 @@ Bit 8 - 15 : reserved]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-0010-0304-3000-040310000403}" Id="#x02030020"/>
-		<MappingInfo Identifier="{00000000-0020-0304-3000-040322000403}" Id="#x02030040"/>
-		<MappingInfo Identifier="{00000000-2041-0850-4020-500841000403}" Id="#x02030030"/>
 		<MappingInfo Identifier="{05000010-2041-0850-3000-040340205008}" Id="#x02030010" Watchdog="14000000040000000400000004000000"/>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis 1, stepper">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 9 (EK1100)^Term 10 (EL7031)">
@@ -3316,17 +3334,17 @@ Bit 8 - 15 : reserved]]></Comment>
 		</OwnerA>
 		<OwnerA Name="TIPC^PLC1^PLC1 Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1004)">
+				<Link VarA="PlcTask Inputs^GVL.homingSensor" VarB="Channel 2^GVL.homingSensor"/>
 				<Link VarA="PlcTask Inputs^GVL.safetyOk" VarB="Channel 1^GVL.safetyOk"/>
-				<Link VarA="PlcTask Inputs^motor.homingSensor" VarB="Channel 2^motor.homingSensor"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL1008)">
 				<Link VarA="PlcTask Inputs^GVL.playCCW" VarB="Channel 5^GVL.playCCW"/>
 				<Link VarA="PlcTask Inputs^GVL.playCW" VarB="Channel 4^GVL.playCW"/>
 				<Link VarA="PlcTask Inputs^GVL.reset" VarB="Channel 3^GVL.reset"/>
 				<Link VarA="PlcTask Inputs^GVL.start" VarB="Channel 6^GVL.start"/>
+				<Link VarA="PlcTask Inputs^GVL.status1" VarB="Channel 1^GVL.status1"/>
+				<Link VarA="PlcTask Inputs^GVL.status2" VarB="Channel 2^GVL.status2"/>
 				<Link VarA="PlcTask Inputs^GVL.stop" VarB="Channel 7^GVL.stop"/>
-				<Link VarA="PlcTask Inputs^GVL.tila1" VarB="Channel 1^GVL.tila1"/>
-				<Link VarA="PlcTask Inputs^GVL.tila2" VarB="Channel 2^GVL.tila2"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2008)">
 				<Link VarA="PlcTask Outputs^GVL.playCCWBtnLight" VarB="Channel 3^GVL.playCCWBtnLight"/>
@@ -3336,7 +3354,7 @@ Bit 8 - 15 : reserved]]></Comment>
 				<Link VarA="PlcTask Outputs^GVL.systemOnLight" VarB="Channel 2^GVL.systemOnLight"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL3102)">
-				<Link VarA="PlcTask Inputs^GVL.potikka" VarB="AI Standard Channel 1^GVL.potikka"/>
+				<Link VarA="PlcTask Inputs^GVL.potentiometer" VarB="AI Standard Channel 1^GVL.potentiometer"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 1, stepper">
 				<Link VarA="PlcTask Inputs^motor.stepperRef.NcToPlc" VarB="Outputs^ToPlc"/>

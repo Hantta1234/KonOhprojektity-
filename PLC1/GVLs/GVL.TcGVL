@@ -6,22 +6,23 @@ VAR_GLOBAL
 	
 	//Laitteistoon liitetyt globaalit muuttujat:
 	//Tulot:
-	safetyOk AT%I*		: BOOL;
-	start 	AT%I*		: BOOL;
-	stop	AT%I*	 	: BOOL;
-	playCW	AT%I*		: BOOL;
-	playCCW	AT%I*		: BOOL;
-	tila1	AT%I*		: BOOL;
-	tila2	AT%I*		: BOOL;
-	reset	AT%I*		: BOOL;
-	potikka AT%I*		: INT ;
+	safetyOk		AT%I*		: BOOL;
+	start 			AT%I*		: BOOL;
+	stop			AT%I*	 	: BOOL;
+	playCW			AT%I*		: BOOL;
+	playCCW			AT%I*		: BOOL;
+	status1			AT%I*		: BOOL;
+	status2			AT%I*		: BOOL;
+	reset			AT%I*		: BOOL;
+	potentiometer 	AT%I*		: INT ;
+	homingSensor 	AT%I*		: BOOL;
 	
 	//GUI
 	
 	startGUI 			: BOOL;
 	stopGUI				: BOOL;
 	resetGUI			: BOOL;
-	asemannollausGUI 	: BOOL;
+	positionResetGUI 	: BOOL;
 	triggerGUI			: BOOL;
 
 	//Lähdöt:
@@ -33,13 +34,13 @@ VAR_GLOBAL
 	resetBtnLight		AT%Q*	: BOOL;
 	playCWBtnLight		AT%Q*	: BOOL;
 	playCCWBtnLight		AT%Q*	: BOOL;
-	
+
 	//Muut globaalit muuttujat:
 	
 	driverMode		: INT := 0;
-	vikamuisti		: BOOL := TRUE;
+	faultMemory		: BOOL := TRUE;
 	blinker1000ms	: BOOL;
-	muuVika			: BOOL;	
+	otherFault		: BOOL := FALSE;	
 	systemOn		: BOOL;
 	
 END_VAR]]></Declaration>

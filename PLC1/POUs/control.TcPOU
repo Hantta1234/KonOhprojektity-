@@ -14,7 +14,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//Laitteen tilan asetus:
 CASE GVL.driverMode OF
-	1:	IF GVL.start AND NOT(GVL.vikamuisti) THEN
+	1:	IF GVL.start AND NOT(GVL.faultMemory) AND NOT(gvl.otherFault) THEN
 			GVL.systemOn := TRUE;
 			driverModeVar := GVL.driverMode;
 		END_IF
@@ -23,13 +23,13 @@ CASE GVL.driverMode OF
 		END_IF
 		
 		IF NOT(GVL.safetyOk) THEN
-			GVL.vikamuisti := TRUE;
+			GVL.faultMemory := TRUE;
 		END_IF
 		IF GVL.reset THEN
-			GVL.vikamuisti := FALSE;
+			GVL.faultMemory := FALSE;
 		END_IF
 		
-	2:	IF GVL.startGUI AND NOT(GVL.vikamuisti) THEN
+	2:	IF GVL.startGUI AND NOT(GVL.faultMemory) AND NOT(gvl.otherFault) THEN
 			GVL.systemOn := TRUE;
 			driverModeVar := GVL.driverMode;
 		END_IF
@@ -38,13 +38,13 @@ CASE GVL.driverMode OF
 		END_IF
 		
 		IF NOT(GVL.safetyOk) THEN
-			GVL.vikamuisti := TRUE;
+			GVL.faultMemory := TRUE;
 		END_IF
 		IF GVL.resetGUI THEN
-			GVL.vikamuisti := FALSE;
+			GVL.faultMemory := FALSE;
 		END_IF
 		
-	3:	IF GVL.startGUI AND NOT(GVL.vikamuisti) THEN
+	3:	IF GVL.startGUI AND NOT(GVL.faultMemory) AND NOT(gvl.otherFault) THEN
 			GVL.systemOn := TRUE;
 			driverModeVar := GVL.driverMode;
 		END_IF
@@ -53,10 +53,10 @@ CASE GVL.driverMode OF
 		END_IF
 		
 		IF NOT(GVL.safetyOk) THEN
-			GVL.vikamuisti := TRUE;
+			GVL.faultMemory := TRUE;
 		END_IF
 		IF GVL.resetGUI THEN
-			GVL.vikamuisti := FALSE;
+			GVL.faultMemory := FALSE;
 		END_IF
 		
 END_CASE
@@ -77,21 +77,21 @@ END_IF
 //	driverModeVar := GVL.driverMode;
 //END_IF
 
-IF GVL.tila1 AND NOT(GVL.tila2) THEN
+IF GVL.status1 AND NOT(GVL.status2) THEN
 	GVL.driverMode := 1;
 	driverMode1 := FALSE;
 ELSE
 	driverMode1 := TRUE;
 END_IF
 
-IF NOT(GVL.tila2) AND NOT(GVL.tila1) THEN
+IF NOT(GVL.status2) AND NOT(GVL.status1) THEN
 	GVL.driverMode := 2;
 	driverMode2 := FALSE;
 ELSE
 	driverMode2 := TRUE;
 END_IF
 
-IF NOT(GVL.tila1) AND GVL.tila2 THEN
+IF NOT(GVL.status1) AND GVL.status2 THEN
 	GVL.driverMode := 3;
 	driverMode3 := FALSE;
 ELSE

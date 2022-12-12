@@ -3,14 +3,14 @@
   <POU Name="light" Id="{fd2f7f95-e065-4823-9a5a-de3dba8e7db8}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM light
 VAR
-	muuVika	: BOOL;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
 IF GVL.systemOn OR GVL.playCW THEN
 	GVL.systemOnLight := TRUE;
-ELSIF (NOT(GVL.vikamuisti) AND GVL.blinker1000ms) THEN
+ELSIF (NOT(GVL.faultMemory) AND GVL.blinker1000ms) THEN
 	GVL.systemOnLight := TRUE;
 ELSE
 	GVL.systemOnLight :=FALSE;
@@ -31,13 +31,13 @@ END_IF
 IF NOT(GVL.safetyOk) OR GVL.start THEN
 	GVL.safetyOkLight := TRUE;
 ELSE
-	IF  GVL.blinker1000ms AND (muuVika OR GVL.vikamuisti) THEN
+	IF  GVL.blinker1000ms AND (GVL.otherFault OR GVL.faultMemory) THEN
 		GVL.safetyOkLight := TRUE;
 	ELSE
 		GVL.safetyOkLight := FALSE;
 	END_IF
 	
-	IF GVL.vikamuisti AND NOT(muuVika) OR gvl.reset THEN
+	IF GVL.faultMemory AND NOT(GVL.otherFault) OR gvl.reset THEN
 		GVL.resetBtnLight := TRUE;	
 	ELSE
 		GVL.resetBtnLight := FALSE;
