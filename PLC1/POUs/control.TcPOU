@@ -73,10 +73,6 @@ ELSE
 	visibleGUI := TRUE; 
 END_IF
 
-//IF GVL.start THEN
-//	driverModeVar := GVL.driverMode;
-//END_IF
-
 IF GVL.status1 AND NOT(GVL.status2) THEN
 	GVL.driverMode := 1;
 	driverMode1 := FALSE;

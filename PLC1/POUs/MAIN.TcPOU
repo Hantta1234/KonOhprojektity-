@@ -6,7 +6,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//Hannes Viljamaa
+      <ST><![CDATA[//13.12.2022
 motor();
 light();
 control();

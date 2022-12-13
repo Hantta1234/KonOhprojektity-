@@ -140,7 +140,6 @@ IF GVL.systemOn THEN
 			IF GVL.triggerGUI THEN
 				stepperMoveAbsolute.Position	:= stepperValue;
 				stepperMoveAbsolute.Velocity 	:= stepperSpeedGUI;
-				//stepperPower.Override			:= stepperSpeedGUI;
 				stepperMoveAbsolute.Execute		:= TRUE;
 			END_IF
 				
@@ -171,7 +170,6 @@ IF GVL.systemOn THEN
 				IF GVL.triggerGUI THEN
 					stepperMoveAbsolute.Position	:= stepperValueVay;
 					stepperMoveAbsolute.Velocity 	:= stepperSpeedVay;
-					//stepperPower.Override			:= stepperSpeedVay;
 					stepperMoveAbsolute.Execute		:= TRUE;
 					onReferenceVar					:= FALSE;
 					positionMatch					:= FALSE;

@@ -8,19 +8,14 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[cycles := cycles + 1;
-// 1 s välein vaihtuva:
+
 IF cycles MOD 100 = 0 THEN
 	GVL.blinker1000ms := NOT(GVL.blinker1000ms);
 END_IF
-//laskurin nollaus:
+
 IF cycles >= 1000 THEN
 	cycles := 0;
 END_IF]]></ST>
     </Implementation>
-    <LineIds Name="blinker">
-      <LineId Id="5" Count="0" />
-      <LineId Id="15" Count="6" />
-      <LineId Id="7" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
