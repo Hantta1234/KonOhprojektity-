@@ -5,6 +5,7 @@
 VAR_GLOBAL
 	
 	//Laitteistoon liitetyt globaalit muuttujat:
+	
 	//Tulot:
 	safetyOk		AT%I*		: BOOL;
 	start 			AT%I*		: BOOL;
