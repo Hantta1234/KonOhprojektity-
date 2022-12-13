@@ -106,6 +106,7 @@ IF GVL.systemOn THEN
 		
 		1:	positionMatch	:= FALSE;
 			onReference		:= FALSE;
+			onReferenceVar	:= FALSE;
 		
 			IF GVL.playCCW THEN
 				JOG.JogForward := TRUE;
@@ -126,6 +127,7 @@ IF GVL.systemOn THEN
 		2:	homing.HomingMode		:= MC_Direct;
 			positionMatch			:= FALSE;
 			onReference				:= FALSE;
+			onReferenceVar			:= FALSE;
 			
 			IF GVL.positionResetGUI THEN
 				homing.Execute			:= TRUE;
